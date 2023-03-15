@@ -1,0 +1,107 @@
+body{
+    color: white;
+    text-align: center;
+    background-image: url(/images/wp2629011.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+}
+
+#title{
+    font-family: 'Creepster', cursive;
+    font-size: 5rem;
+}
+
+#starting-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* set the height to 100% of the viewport height */
+}
+
+#game-display{
+    display: none;
+    height: 100vh;
+    max-width: 400px;
+    margin: 0 auto;
+    border: 1px white solid;
+}
+
+.cards{
+    width: 100px;
+    height: 150px;
+    border: 1px white solid;
+    margin: 5px auto;
+
+}
+
+#dealt-cards{
+    display: none;
+
+}
+
+
+#rules{
+    height: 100vh;
+    padding: 6px;
+    display: none;
+}
+
+li{
+    font-size: 1.1rem;
+}
+
+#battle,
+#computer-cards,
+#player-cards{
+    display: flex;
+}
+
+#computer-card{
+    position: relative;
+    left: 50px;
+}
+
+#before-deal{
+    display: flex;
+    flex-direction: column;
+}
+
+#before-deal,
+#after-deal{
+    display: none;
+}
+
+
+
+#computer-main-desk{
+    position: relative;
+    left: 150px;
+}
+
+#computer-won-cards{
+    position: relative;
+    left: 80px;
+}
+
+#player-main-desk{
+    position: relative;
+    right: 150px;
+}
+
+#player-won-cards{
+    position: relative;
+    right: 80px;
+}
+
+#display-computer-card{
+    position: relative;
+    left: 30px;
+}
+
+#display-player-card{
+    position: relative;
+    right: 30px;
+}
+
