@@ -7,12 +7,35 @@ let playerScore = 0;
 let remainingCards = document.getElementById('remainingCards');
 let computerCard = document.getElementById('computer-card');
 let playerCard = document.getElementById('player-card');
+const startingPage = document.getElementById('starting-page');
+const beforeDeal = document.getElementById('before-deal');
 
+startingPage.style.opacity = 0;
+beforeDeal.style.opacity = 0;
 
-function displayRules() {
+function fadeInTitle() {
+    let opacity = parseFloat(startingPage.style.opacity);
+    if (opacity < 1) {
+      opacity += 0.1;
+      startingPage.style.opacity = opacity;
+      setTimeout(fadeInTitle, 100);
+    }
+}  
+// Call the animation function after a delay
+setTimeout(fadeInTitle, 500);
+
+function fadeInSecondPage() {
     document.getElementById('starting-page').style.display = 'none';
     document.getElementById('before-deal').style.display = 'flex';
-} setTimeout(displayRules, 1000);
+    let opacity = parseFloat(beforeDeal.style.opacity);
+    if (opacity < 1) {
+      opacity += 0.1;
+      beforeDeal.style.opacity = opacity;
+      setTimeout(fadeInSecondPage, 100);
+    }
+}setTimeout(fadeInSecondPage, 2000);
+
+
 
 document.getElementById('start-game-btn').addEventListener('click', function() {
     document.getElementById('before-deal').style.display = 'none';
@@ -77,52 +100,76 @@ function drawCards() {
 function showNextCard() {
     computerCard.innerHTML = "";
     playerCard.innerHTML = "";
-    
+
     const computerCardObj = computerDeck[0];
     const playerCardObj = playerDeck[0];
-    
+
     computerCard.innerHTML = `<img src=${computerCardObj.image} class="cards" />`;
     playerCard.innerHTML = `<img src=${playerCardObj.image} class="cards" />`;
-    
+
     const result = compareCards(computerCardObj, playerCardObj);
-    
+
     if (result === "Computer wins!") {
+        computerScore++;
         document.getElementById("computer-score").textContent = computerScore;
     } else if (result === "You win!") {
+        playerScore++;
         document.getElementById("player-score").textContent = playerScore;
     }
-    
+
     console.log(result);
-    
-    // Increment the scores and check if the game is over
-    computerScore++;
-    playerScore++;
+
+    // Remove the first card from the decks
+    computerDeck.shift();
+    playerDeck.shift();
+
+    // Check if the game is over
     if (computerScore >= computerDeck.length || playerScore >= playerDeck.length) {
         console.log("Game over!");
         document.getElementById('next-card-btn').style.display = 'none';
     }
 }
 
-
 function compareCards(card1, card2) {
-    const valueOptions = ["2", "3", "4", "5", "6", "7", "8", "9", 
-    "10", "JACK", "QUEEN", "KING", "ACE"]
+    const valueOptions = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "JACK", "QUEEN", "KING", "ACE"]
     const card1ValueIndex = valueOptions.indexOf(card1.value)
     const card2ValueIndex = valueOptions.indexOf(card2.value)
     
     if (card1ValueIndex > card2ValueIndex) {
-        computerScore++;
         console.log(`${computerScore}`);
         return "Computer wins!";
     } else if (card1ValueIndex < card2ValueIndex) {
-        playerScore++;
         console.log(`${playerScore}`);
         return "You win!";
     } else {
-        return "War!";
+        console.log("War!");
+        // Draw four cards from each player's deck
+        const computerWarCards = computerDeck.splice(0, 4);
+        const playerWarCards = playerDeck.splice(0, 4);
+
+        // Get the fourth card from each player's war cards
+        const computerFourthCard = computerWarCards[3];
+        const playerFourthCard = playerWarCards[3];
+
+        console.log(`Computer's fourth card: ${computerFourthCard.code}`);
+        console.log(`Player's fourth card: ${playerFourthCard.code}`);
+
+        const warResult = compareCards(computerFourthCard, playerFourthCard);
+
+        if (warResult === "Computer wins!") {
+            console.log("Computer wins the war!");
+            computerDeck.push(...computerWarCards, ...playerWarCards);
+            return "Computer wins!";
+        } else if (warResult === "You win!") {
+            console.log("You win the war!");
+            playerDeck.push(...playerWarCards, ...computerWarCards);
+            return "You win!";
+        } else {
+            console.log("Another war!");
+            return compareCards(computerFourthCard, playerFourthCard);
+        }
     }
 }
-
 
 
 

@@ -5,6 +5,7 @@ body{
     background-repeat: no-repeat;
     background-size: cover;
     height: 100vh;
+    
 }
 
 #title{
@@ -25,12 +26,18 @@ body{
     height: 100vh;
     max-width: 420px;
     margin: 0 auto;
+    border: 1px white solid;
+}
+
+#main-content{
+    margin-top: -50px ;
 }
 
 .cards{
     width: 100px;
     height: 150px;
     margin: 5px auto;
+    border: 1px white solid;
 
 }
 
@@ -93,8 +100,7 @@ li{
 
 }
 
-#before-deal,
-#after-deal{
+#before-deal{
     display: none;
 }
 
@@ -102,22 +108,22 @@ li{
 
 #computer-main-desk{
     position: relative;
-    left: 20px;
+    left: 150px;
 }
 
 #computer-won-cards{
     position: relative;
-    left: 25px;
+    left: 80px;
 }
 
 #player-main-desk{
     position: relative;
-    right: 50px;
+    right: 170px;
 }
 
 #player-won-cards{
     position: relative;
-    right: 35px;
+    right: 90px;
 }
 
 #computer-card{

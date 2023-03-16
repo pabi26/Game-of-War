@@ -49,20 +49,3 @@ if (computerDeck.length === 0) {
     console.log("Computer Wins the Game!");
 }
 
-// Helper Function to Get Card Value
-function getValue(card) {
-    let value = card.split(' ')[0];
-    if (isNaN(value)) {
-        switch (value) {
-            case 'ace':
-                return 14;
-            case 'jack':
-                return 11;
-            case 'queen':
-                return 12;
-            case 'king':
-                return 13;
-        }
-    }
-    return parseInt(value);
-}
