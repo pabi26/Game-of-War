@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
     <link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <title>War Card Game</title>
@@ -15,47 +16,25 @@
         <h1 id = "title">Game Of War</h1>
     </div>
 
-    <div id = "rules">
-        <h1>War Rules</h1>
-        <ol>
-            <li>
-                Each player gets dealt half the deck, 26 cards, and the cards are put face down in a
-                stack in front of the players.
-            </li>
-            <li>
-                Both players turn their top card face up at the same time. The person with the higher
-                card wins that draw, and takes both the cards. They are put to the side to form a new
-                stack, which the player can use when he finishes his current stack.
-            </li>
-            <li>
-                If both players draw a card of the same rank, e.g. they both draw 8s, then there's a war.
-                The face up cards are left on the table and each player puts three cards face down on the
-                table, and then puts one card face up. The face up card determines who wins the war and
-                gets all 10 cards that are on the table at this point. If the face up card is again the
-                same rank, then the war goes on, three more face down, one face up etc.
-            </li>
-            <li>
-                First player to finish all their cards loses the game.
-            </li>
-            <li>
-                If a player finishes their cards during a war without having enough cards to finish the
-                war then he loses immediately.
-            </li>
-        </ol>
-        <button id = "start-game">Start Game</button>
-    </div>
 
     <div id="before-deal">
-        
+        <h2>Computer</h2>
+        <h2>Vs</h2>
+        <h2>Player</h2>
         <img src="/images/09a58d561b2a7b92bd506c83414ef1ab.png" class="cards">
-        <button id = "draw-cards-btn">draw</button>
+        <button id = "start-game-btn">Start Game</button>
        
     </div>
     
     <main id = "game-display">
 
+        <div>
 
-            <h1>Computer</h1>
+            <div>
+                <span class="material-symbols-outlined" id="rules-btn">menu</span>
+            </div>
+            <h2>Computer</h2>
+            <p>Score: <span id="computer-score">0</span></p>
             <div id = "computer-cards">
                 <div id = "computer-main-desk"> 
                     <img src="/images/09a58d561b2a7b92bd506c83414ef1ab.png" class="cards">
@@ -65,8 +44,8 @@
 
 
             <div id = "battle">
-                <div class = "cards" id = "display-computer-card"></div>
-                <div class = "cards" id = "display-player-card"></div>
+                <div class = "cards" id = "computer-card"></div>
+                <div class = "cards" id = "player-card"></div>
             </div>
 
 
@@ -76,18 +55,51 @@
                     <img src="/images/09a58d561b2a7b92bd506c83414ef1ab.png" class="cards">
                 </div>
             </div>
+
             <h3 id="remainingCards"></h3>
-            <h1>You</h1>
+            <h2>You</h2>
+            <p>Score: <span id="player-score">0</span></p>
+            <button id="deal-cards-btn">Deal Cards</button>
+            <button id="next-card-btn">Next</button>
 
 
-    
+        </div>
       
+
+        <div id = "rules">
+            <h1>War Rules</h1>
+            <ol id="rule">
+                <li>
+                    Each player gets dealt half the deck, 26 cards, and the cards are put face down in a
+                    stack in front of the players.
+                </li>
+                <li>
+                    Both players turn their top card face up at the same time. The person with the higher
+                    card wins that draw, and takes both the cards. They are put to the side to form a new
+                    stack, which the player can use when he finishes his current stack.
+                </li>
+                <li>
+                    If both players draw a card of the same rank, e.g. they both draw 8s, then there's a war.
+                    The face up cards are left on the table and each player puts three cards face down on the
+                    table, and then puts one card face up. The face up card determines who wins the war and
+                    gets all 10 cards that are on the table at this point. If the face up card is again the
+                    same rank, then the war goes on, three more face down, one face up etc.
+                </li>
+                <li>
+                    First player to finish all their cards loses the game.
+                </li>
+                <li>
+                    If a player finishes their cards during a war without having enough cards to finish the
+                    war then he loses immediately.
+                </li>
+            </ol>
+            <button id = "close-rules">X</button>
+        </div>
 
      
        
 
     </main>
-
     <script src="index.js"></script>
 </body>
 </html>
