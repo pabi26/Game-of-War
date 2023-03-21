@@ -159,3 +159,10 @@ li{
     left: 170px;
 }
 
+#message{
+    border: 1px white solid;
+    padding: 5px;
+    background-color: rgb(252, 151, 0);
+    max-width: 350px;
+    margin: 15px auto 0 auto;
+}

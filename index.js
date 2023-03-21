@@ -4,11 +4,11 @@ let computerDeck = [];
 let playerDeck = [];
 let computerScore = 0;
 let playerScore = 0;
-let remainingCards = document.getElementById('remainingCards');
 let computerCard = document.getElementById('computer-card');
 let playerCard = document.getElementById('player-card');
 const startingPage = document.getElementById('starting-page');
 const beforeDeal = document.getElementById('before-deal');
+let message = document.getElementById('message')
 
 startingPage.style.opacity = 0;
 beforeDeal.style.opacity = 0;
@@ -112,9 +112,11 @@ function showNextCard() {
     if (result === "Computer wins!") {
         computerScore++;
         document.getElementById("computer-score").textContent = computerScore;
+        message.textContent = "Computer wins!";
     } else if (result === "You win!") {
         playerScore++;
         document.getElementById("player-score").textContent = playerScore;
+        message.textContent = "You win!";
     }
 
     console.log(result);
