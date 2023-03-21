@@ -2,7 +2,7 @@ body{
     color: white;
     background-color: black;
     text-align: center;
-    background-image: url(/images/wp2629011.jpg);
+    background-image: url(images/wp2629011.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     height: 100vh;
@@ -38,6 +38,7 @@ body{
     width: 100px;
     height: 150px;
     margin: 5px auto;
+    
 
 }
 
@@ -86,10 +87,6 @@ li{
     display: flex;
 }
 
-#computer-card{
-    position: relative;
-    left: 50px;
-}
 
 #before-deal{
     display: flex;
@@ -97,44 +94,24 @@ li{
     justify-content: center;
     align-items: center;
     height: 100vh; 
-
 }
 
 #before-deal{
     display: none;
 }
 
-
-
-#computer-main-desk{
-    position: relative;
-    left: 150px;
+#before-deal h2{
+    font-size: 3rem;
+    margin-top: -20px;
 }
 
-#computer-won-cards{
-    position: relative;
-    left: 80px;
+#before-deal button{
+    margin-top: 25px;
 }
 
-#player-main-desk{
-    position: relative;
-    right: 170px;
-}
 
-#player-won-cards{
-    position: relative;
-    right: 90px;
-}
 
-#computer-card{
-    position: relative;
-    left: 30px;
-}
 
-#player-card{
-    position: relative;
-    right: 30px;
-}
 
 #computer-score-el{
     padding-left: 10px;
