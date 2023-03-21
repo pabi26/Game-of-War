@@ -27,11 +27,16 @@ body{
     height: 100vh;
     max-width: 420px;
     margin: 0 auto;
-    border: 1px white solid;
 }
 
 #main-content{
     margin-top: -50px ;
+}
+
+#main-content h2{
+    font-size: 2rem;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .cards{
@@ -51,6 +56,36 @@ body{
     display: none;
     margin: 0 auto;
 }
+
+#start-game-btn,
+#next-card-btn,
+#deal-cards-btn{
+    width: 100px;
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+    color: rgb(255, 255, 255);
+    font-size: 1rem;
+    background-color: black;
+    border: 1px white solid;
+}
+
+#close-rules:hover,
+#close-rules:active,
+.material-symbols-outlined:hover,
+.material-symbols-outlined:active,
+#start-game-btn:hover,
+#start-game-btn:active,
+#next-card-btn:hover,
+#next-card-btn:active,
+#deal-cards-btn:hover,
+#deal-cards-btn:active{
+    cursor: pointer;
+    transform: scale(1.1);
+    color: red;
+}
+
+
 
 #rules{
     border: 1px white solid;
@@ -110,9 +145,6 @@ li{
 }
 
 
-
-
-
 #computer-score-el{
     padding-left: 10px;
 }
@@ -127,7 +159,3 @@ li{
     left: 170px;
 }
 
-#draw-cards-btn{
-    max-width: 100px;
-    margin: 0 auto
-}
