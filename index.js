@@ -10,9 +10,11 @@ const startingPage = document.getElementById('starting-page');
 const beforeDeal = document.getElementById('before-deal');
 let message = document.getElementById('message')
 
+//First two pages opacity set to 0 so the user can not see them
 startingPage.style.opacity = 0;
 beforeDeal.style.opacity = 0;
 
+//function to show title
 function fadeInTitle() {
     let opacity = parseFloat(startingPage.style.opacity);
     if (opacity < 1) {
@@ -21,9 +23,9 @@ function fadeInTitle() {
       setTimeout(fadeInTitle, 100);
     }
 }  
-// Call the animation function after a delay
 setTimeout(fadeInTitle, 500);
 
+//function to show the second page
 function fadeInSecondPage() {
     document.getElementById('starting-page').style.display = 'none';
     document.getElementById('before-deal').style.display = 'flex';
@@ -36,6 +38,7 @@ function fadeInSecondPage() {
 }setTimeout(fadeInSecondPage, 2000);
 
 
+//button functions
 
 document.getElementById('start-game-btn').addEventListener('click', function() {
     document.getElementById('before-deal').style.display = 'none';
@@ -65,6 +68,7 @@ document.getElementById('next-card-btn').addEventListener('click', function() {
 
 
 
+//function to get a deck of cards from a api
 function getDeckOfCards() {
     fetch(`https://www.deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1`)
     .then(res => res.json())
@@ -75,7 +79,7 @@ function getDeckOfCards() {
     })
 }
 
-
+//function to split the deck into 2 even parts for both the computer and the player
 function drawCards() {
     fetch(`https://www.deckofcardsapi.com/api/deck/${deckId}/draw/?count=52`)
     .then(res => res.json())
@@ -96,7 +100,7 @@ function drawCards() {
     })
 }
 
-
+//function to show the next card in the computer and player deck.
 function showNextCard() {
     computerCard.innerHTML = "";
     playerCard.innerHTML = "";
@@ -132,6 +136,8 @@ function showNextCard() {
     }
 }
 
+
+//function to compare computer's card to player's card so see which has a higher value
 function compareCards(card1, card2) {
     const valueOptions = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "JACK", "QUEEN", "KING", "ACE"]
     const card1ValueIndex = valueOptions.indexOf(card1.value)
