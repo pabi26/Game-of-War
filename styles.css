@@ -27,7 +27,7 @@ body{
     display: none;
     height: 100vh;
     max-width: 420px;
-    margin: 50px auto;
+    margin: 100px auto;
 }
 
 #main-content{
@@ -44,8 +44,6 @@ body{
     width: 100px;
     height: 150px;
     margin: 5px auto;
-    
-
 }
 
 #dealt-cards{
@@ -161,10 +159,79 @@ li{
     left: 170px;
 }
 
-#message{
-    border: 1px white solid;
+#message,
+#war-message{
     padding: 5px;
     background-color: rgb(252, 151, 0);
     max-width: 350px;
     margin: 15px auto 0 auto;
+}
+
+
+#war{
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    height: 100vh;
+    border: 1px white solid;
+    background-color: black;
+    background-image: url(images/istockphoto-1329299601-170667a.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: none;
+}
+
+#war-title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    font-size: 3rem;
+    font-family: 'Creepster', cursive;
+}
+
+#battle{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    flex-direction: column;
+}
+
+#compter-war-cards,
+#player-war-cards{
+    display: flex;
+    margin-top: 10px;
+}
+
+#computer-first-card,
+#player-first-card{
+    margin-right: 10px;
+}
+
+#computer-third-card,
+#player-third-card{
+    margin-left: 10px;
+}
+
+#war-face-off{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    flex-direction: column;
+    position: fixed;
+    width: 350px;
+    height: 70vh;
+    border: 1px red solid;
+    background-color: black;
+}
+
+#war-face-off{
+    display: none;
+}
+
+#player-forth-card{
+    margin-top: 20px;
 }

@@ -4,15 +4,26 @@ let computerDeck = [];
 let playerDeck = [];
 let computerScore = 0;
 let playerScore = 0;
+let computerWonDeck = [];
+let playerWonDeck = [];
+let computerWarCards = [];
+let playerWarCards = [];
 let computerCard = document.getElementById('computer-card');
 let playerCard = document.getElementById('player-card');
 const startingPage = document.getElementById('starting-page');
 const beforeDeal = document.getElementById('before-deal');
 let message = document.getElementById('message')
+let computerWarHands = document.getElementById('compter-war-cards');
+let playerWarHands = document.getElementById('player-war-cards')
+let computerForthCard = document.getElementById('computer-forth-card')
+let playerForthCard = document.getElementById('player-forth-card')
+let warMessage = document.getElementById('war-message')
+
 
 //First two pages opacity set to 0 so the user can not see them
 startingPage.style.opacity = 0;
 beforeDeal.style.opacity = 0;
+
 
 //function to show title
 function fadeInTitle() {
@@ -113,26 +124,32 @@ function showNextCard() {
 
     const result = compareCards(computerCardObj, playerCardObj);
 
+    let removedComputerCard =  computerDeck.shift();
+    let removedPlayerCard = playerDeck.shift();
+
     if (result === "Computer wins!") {
         computerScore++;
         document.getElementById("computer-score").textContent = computerScore;
         message.textContent = "Computer wins!";
+        computerWonDeck.push(removedComputerCard,removedPlayerCard);
+        console.log(computerWonDeck)
     } else if (result === "You win!") {
         playerScore++;
         document.getElementById("player-score").textContent = playerScore;
         message.textContent = "You win!";
+        playerWonDeck.push(removedPlayerCard,removedComputerCard)
+        console.log(playerWonDeck)
     }
 
     console.log(result);
 
-    // Remove the first card from the decks
-    computerDeck.shift();
-    playerDeck.shift();
 
     // Check if the game is over
-    if (computerScore >= computerDeck.length || playerScore >= playerDeck.length) {
+    if (computerDeck.length === 0|| playerDeck.length === 0) {
         console.log("Game over!");
         document.getElementById('next-card-btn').style.display = 'none';
+        console.log(playerDeck);
+        console.log(computerDeck);
     }
 }
 
@@ -150,40 +167,108 @@ function compareCards(card1, card2) {
         console.log(`${playerScore}`);
         return "You win!";
     } else {
-        console.log("War!");
-        // Draw four cards from each player's deck
-        const computerWarCards = computerDeck.splice(0, 4);
-        const playerWarCards = playerDeck.splice(0, 4);
+       WAR()
+    }
+}
 
-        // Get the fourth card from each player's war cards
-        const computerFourthCard = computerWarCards[3];
-        const playerFourthCard = playerWarCards[3];
+function drawFifthCard() {
+    let computerFifthCard = [];
+    let playerFifthCard = [];
+    computerFifthCard = computerDeck.shift();
+    playerFifthCard = playerCard.shift();
 
-        console.log(`Computer's fourth card: ${computerFourthCard.code}`);
-        console.log(`Player's fourth card: ${playerFourthCard.code}`);
+    computerForthCard.innerHTML = `<img src=${computerFifthCard.image} class = "cards" />`;
+    playerForthCard.innerHTML = `<img src=${playerFifthCard.image} class = "cards" />`;
 
-        const warResult = compareCards(computerFourthCard, playerFourthCard);
-
-        if (warResult === "Computer wins!") {
-            console.log("Computer wins the war!");
-            computerDeck.push(...computerWarCards, ...playerWarCards);
-            return "Computer wins!";
-        } else if (warResult === "You win!") {
-            console.log("You win the war!");
-            playerDeck.push(...playerWarCards, ...computerWarCards);
-            return "You win!";
-        } else {
-            console.log("Another war!");
-            return compareCards(computerFourthCard, playerFourthCard);
-        }
+    const warWarResults = compareCards(computerFifthCard,playerFifthCard);
+    if (warWarResult === "Computer wins!") {
+        warMessage.textContent = "Computer wins the war!";
+        computerWonDeck.push(...computerWarCards, ...playerWarCards,computerFifthCard,playerFifthCard);
+        return "Computer wins!";
+    } else if (warWarResult === "You win!") {
+        warMessage.textContent = "You win the war!";
+        playerWonDeck.push(...playerWarCards, ...computerWarCards,computerFifthCard,playerFifthCard);
+        return "You win!";
     }
 }
 
 
 
+function WAR(){
+    message.textContent = "War!" ;
+    document.getElementById('war').style.display = 'block'
+
+    setTimeout(function() {
+        document.getElementById('war-title').style.display = 'none'
+    }, 2000)
+
+    setTimeout(function() {
+        document.getElementById('war-face-off').style.display = 'block'
+    }, 5000)
+
+    setTimeout(function() {
+        document.getElementById('war').style.display = 'none'
+    }, 9000)
 
 
 
+
+    // Draw four cards from each player's deck
+    const computerWarCards = computerDeck.splice(0, 4);
+    const playerWarCards = playerDeck.splice(0, 4);
+
+    
+
+    computerWarHands.innerHTML =
+    `
+    <div id = "computer-first-card">
+        <img src=${computerWarCards[0].image} class = "cards" />
+    </div>
+    <div id = "computer-second-card">
+        <img src=${computerWarCards[1].image} class = "cards" />
+    </div>
+    <div id = "computer-third-card">
+        <img src=${computerWarCards[2].image} class = "cards" />
+    </div>
+    
+    `
+
+    playerWarHands.innerHTML =
+    `
+    <div id = "player-first-card">
+        <img src=${playerWarCards[0].image} class = "cards" />
+    </div>
+    <div id = "player-second-card">
+        <img src=${playerWarCards[1].image} class = "cards" />
+    </div>
+    <div id = "player-third-card">
+        <img src=${playerWarCards[2].image} class = "cards" />
+    </div>
+    
+    `
+    
+    // Get the fourth card from each player's war cards
+    
+    computerForthCard.innerHTML = `<img src=${computerWarCards[3].image} class = "cards" />`;
+    playerForthCard.innerHTML = `<img src=${playerWarCards[3].image} class = "cards" />`;
+
+
+
+    const warResult = compareCards(computerWarCards[3], playerWarCards[3]);
+
+    if (warResult === "Computer wins!") {
+        warMessage.textContent = "Computer wins the war!";
+        computerWonDeck.push(...computerWarCards, ...playerWarCards);
+        return "Computer wins!";
+    } else if (warResult === "You win!") {
+        warMessage.textContent = "You win the war!";
+        playerWonDeck.push(...playerWarCards, ...computerWarCards);
+        return "You win!";
+    } else {
+        warMessage.textContent = "Another war!";
+        drawFifthCard()
+    }
+}
 
 
 
