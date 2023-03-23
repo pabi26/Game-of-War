@@ -199,6 +199,8 @@ li{
     flex-direction: column;
 }
 
+
+
 #compter-war-cards,
 #player-war-cards{
     display: flex;
@@ -228,6 +230,7 @@ li{
     background-color: black;
 }
 
+#battle,
 #war-face-off{
     display: none;
 }
