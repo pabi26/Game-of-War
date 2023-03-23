@@ -208,6 +208,7 @@ li{
     align-items: center;
     height: 100%;
     flex-direction: column;
+    margin-top: -20px;
 }
 
 
@@ -239,6 +240,7 @@ li{
     height: 600px;
     border: 1px red solid;
     background-color: black;
+    margin-top: -20px;
 }
 
 #war-message{
