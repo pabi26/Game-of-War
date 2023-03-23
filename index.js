@@ -12,6 +12,7 @@ let computerCard = document.getElementById('computer-card');
 let playerCard = document.getElementById('player-card');
 const startingPage = document.getElementById('starting-page');
 const beforeDeal = document.getElementById('before-deal');
+const gameDisplay = document.getElementById('game-display')
 let message = document.getElementById('message');
 let computerWarHands = document.getElementById('compter-war-cards');
 let playerWarHands = document.getElementById('player-war-cards');
@@ -23,6 +24,7 @@ let warBattle = document.getElementById('battle');
 let beforeFaceOff = document.getElementById('before-faceoff');
 let warFaceOff = document.getElementById('war-face-off')
 let newGame = document.getElementById('new-game-btn')
+let dealCardsBtn = document.getElementById('deal-cards-btn')
 
 
 
@@ -62,7 +64,7 @@ function fadeInSecondPage() {
 
 document.getElementById('start-game-btn').addEventListener('click', function() {
     document.getElementById('before-deal').style.display = 'none';
-    document.getElementById('game-display').style.display = 'block';
+    gameDisplay.style.display = 'block';
     getDeckOfCards();
 })
 
@@ -74,10 +76,10 @@ document.getElementById('close-rules').addEventListener('click', function() {
     document.getElementById('rules').style.display = 'none';
 })
 
-document.getElementById('deal-cards-btn').addEventListener('click', function() {
+dealCardsBtn.addEventListener('click', function() {
     console.log('dealt');
     drawCards() ;
-    document.getElementById('deal-cards-btn').style.display = 'none';
+    dealCardsBtn.style.display = 'none';
     document.getElementById('next-card-btn').style.display = 'block';
 })
 
@@ -150,6 +152,8 @@ function showNextCard() {
         playerWonDeck.push(removedPlayerCard,removedComputerCard)
         console.log(playerWonDeck)
     }
+
+
 
     console.log(result);
     
@@ -327,3 +331,30 @@ document.getElementById('continue-game-btn').addEventListener('click', function(
 
 
 
+newGame.addEventListener('click', function() {
+    resetGame()
+})
+
+function resetGame() {
+    deck = [];
+    computerDeck = [];
+    playerDeck = [];
+    computerScore = 0;
+    playerScore = 0;
+    computerWonDeck = [];
+    playerWonDeck = [];
+    computerWarCards = [];
+    playerWarCards = [];
+    gameDisplay.style.display = 'none';
+    beforeDeal.style.display = 'flex';
+    document.getElementById("computer-score").textContent = 0;
+    document.getElementById("player-score").textContent = 0;
+    document.getElementById('computer-card-count').textContent = 0;
+    document.getElementById('player-card-count').textContent = 0;
+    computerCard.textContent = '';
+    playerCard.textContent = '';
+    newGame.style.display = 'none';
+    dealCardsBtn.style.display = "block";
+    dealCardsBtn.style.margin = "0px auto";
+  
+}
