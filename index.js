@@ -153,10 +153,9 @@ function showNextCard() {
 
     // Check if the game is over
     if (computerDeck.length === 0|| playerDeck.length === 0) {
-        console.log("Game over!");
+        determineWinner() 
         document.getElementById('next-card-btn').style.display = 'none';
-        console.log(playerDeck);
-        console.log(computerDeck);
+       
     }
 }
 
@@ -211,25 +210,17 @@ function WAR(){
 
         setTimeout(function() {
             warTitle.style.display = 'none'
-        }, 4000)
+        }, 2000)
 
      
         setTimeout(function() {
             warBattle.style.display = 'flex'
-        }, 4000)
+        }, 2000)
 
-        setTimeout(function() {
-            warFaceOff.style.display = 'block'
-        }, 6000)
+       
 
 
-        setTimeout(function() {
-            document.getElementById('war').style.display = 'none'
-            warTitle.style.display = 'flex'
-            warBattle.style.display = 'none'
-            warFaceOff.style.display = 'none'
-        }, 9000)
-
+      
 
         // Draw four cards from each player's deck
         computerWarCards = computerDeck.splice(0, 4);
@@ -296,14 +287,29 @@ function WAR(){
 
 
 
+function determineWinner() {
+    if(computerWonDeck > playerWonDeck){
+        message.textContent = 'Computer Wins the Game Of War!!'
+    } else if (playerWonDeck > computerWonDeck) {
+        message.textContent =  'Player Wins the Game Of War!!'
+    } else {
+        message.textContent = "It's a tie!!"
+    }
+}
 
 
 
+document.getElementById('continue-war-btn').addEventListener('click', function() {
+    warFaceOff.style.display = 'block'
+})
 
 
-
-
-
+document.getElementById('continue-game-btn').addEventListener('click', function() {
+    document.getElementById('war').style.display = 'none'
+    warTitle.style.display = 'flex'
+    warBattle.style.display = 'none'
+    warFaceOff.style.display = 'none'
+})
 
 
 

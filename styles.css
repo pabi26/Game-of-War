@@ -27,7 +27,7 @@ body{
     display: none;
     height: 100vh;
     max-width: 420px;
-    margin: 100px auto;
+    margin: 30px auto;
 }
 
 #main-content{
@@ -56,6 +56,8 @@ body{
     margin: 0 auto;
 }
 
+#continue-war-btn,
+#continue-game-btn,
 #start-game-btn,
 #next-card-btn,
 #deal-cards-btn{
@@ -69,6 +71,10 @@ body{
     border: 1px white solid;
 }
 
+#continue-war-btn:hover,
+#continue-war-btn:active,
+#continue-game-btn:hover,
+#continue-game-btn:active,
 #close-rules:hover,
 #close-rules:active,
 .material-symbols-outlined:hover,
@@ -225,9 +231,13 @@ li{
     flex-direction: column;
     position: fixed;
     width: 350px;
-    height: 70vh;
+    height: 80vh;
     border: 1px red solid;
     background-color: black;
+}
+
+#war-message{
+width: 80%;
 }
 
 #battle,
