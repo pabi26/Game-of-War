@@ -51,11 +51,14 @@ body{
 
 }
 
+#new-game-btn,
 #next-card-btn{
     display: none;
     margin: 0 auto;
 }
 
+
+#new-game-btn,
 #continue-war-btn,
 #continue-game-btn,
 #start-game-btn,
@@ -71,6 +74,8 @@ body{
     border: 1px white solid;
 }
 
+#new-game-btn:hover,
+#new-game-btn:active,
 #continue-war-btn:hover,
 #continue-war-btn:active,
 #continue-game-btn:hover,
@@ -120,6 +125,7 @@ body{
 
 li{
     font-size: 1rem;
+    padding: 4px;
 }
 
 #battle,
@@ -180,7 +186,6 @@ li{
     left: 0px;
     width: 100vw;
     height: 100vh;
-    border: 1px white solid;
     background-color: black;
     background-image: url(images/istockphoto-1329299601-170667a.jpg);
     background-repeat: no-repeat;
@@ -193,7 +198,7 @@ li{
     justify-content: center;
     align-items: center;
     height: 100%;
-    font-size: 3rem;
+    font-size: 2.5rem;
     font-family: 'Creepster', cursive;
 }
 
@@ -231,7 +236,7 @@ li{
     flex-direction: column;
     position: fixed;
     width: 350px;
-    height: 80vh;
+    height: 600px;
     border: 1px red solid;
     background-color: black;
 }

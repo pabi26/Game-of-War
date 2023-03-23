@@ -12,16 +12,18 @@ let computerCard = document.getElementById('computer-card');
 let playerCard = document.getElementById('player-card');
 const startingPage = document.getElementById('starting-page');
 const beforeDeal = document.getElementById('before-deal');
-let message = document.getElementById('message')
+let message = document.getElementById('message');
 let computerWarHands = document.getElementById('compter-war-cards');
-let playerWarHands = document.getElementById('player-war-cards')
-let computerForthCard = document.getElementById('computer-forth-card')
-let playerForthCard = document.getElementById('player-forth-card')
-let warMessage = document.getElementById('war-message')
-let warTitle = document.getElementById('war-title')
-let warBattle = document.getElementById('battle')
-let beforeFaceOff = document.getElementById('before-faceoff')
+let playerWarHands = document.getElementById('player-war-cards');
+let computerForthCard = document.getElementById('computer-forth-card');
+let playerForthCard = document.getElementById('player-forth-card');
+let warMessage = document.getElementById('war-message');
+let warTitle = document.getElementById('war-title');
+let warBattle = document.getElementById('battle');
+let beforeFaceOff = document.getElementById('before-faceoff');
 let warFaceOff = document.getElementById('war-face-off')
+let newGame = document.getElementById('new-game-btn')
+
 
 
 
@@ -134,6 +136,7 @@ function showNextCard() {
     let removedComputerCard =  computerDeck.shift();
     let removedPlayerCard = playerDeck.shift();
 
+
     if (result === "Computer wins!") {
         computerScore++;
         document.getElementById("computer-score").textContent = computerScore;
@@ -149,13 +152,15 @@ function showNextCard() {
     }
 
     console.log(result);
-
+    
+    document.getElementById('computer-card-count').textContent = computerWonDeck.length;
+    document.getElementById('player-card-count').textContent = playerWonDeck.length;
 
     // Check if the game is over
     if (computerDeck.length === 0|| playerDeck.length === 0) {
         determineWinner() 
         document.getElementById('next-card-btn').style.display = 'none';
-       
+        newGame.style.display = 'block';
     }
 }
 
@@ -177,26 +182,7 @@ function compareCards(card1, card2) {
     }
 }
 
-function drawFifthCard() {
-    let computerFifthCard = [];
-    let playerFifthCard = [];
-    computerFifthCard = computerDeck.shift();
-    playerFifthCard = playerCard.shift();
 
-    computerForthCard.innerHTML = `<img src=${computerFifthCard.image} class = "cards" />`;
-    playerForthCard.innerHTML = `<img src=${playerFifthCard.image} class = "cards" />`;
-
-    let warWarResults = compareCards(computerFifthCard,playerFifthCard);
-    if (warWarResult === "Computer wins!") {
-        warMessage.textContent = "Computer wins the war!";
-        computerWonDeck.push(...computerWarCards, ...playerWarCards,computerFifthCard,playerFifthCard);
-        return "Computer wins!";
-    } else if (warWarResult === "You win!") {
-        warMessage.textContent = "You win the war!";
-        playerWonDeck.push(...playerWarCards, ...computerWarCards,computerFifthCard,playerFifthCard);
-        return "You win!";
-    }
-}
 
 
 
@@ -265,7 +251,7 @@ function WAR(){
 
         if (warResult === "Computer wins!") {
             warMessage.textContent = "Computer wins the war!";
-            computerWonDeck.push(...computerWarCards, ...playerWarCards);
+            computerWonDeck.push(...computerWarCards, ...playerWarCards,);
             return "Computer wins!";
         } else if (warResult === "You win!") {
             warMessage.textContent = "You win the war!";
@@ -284,7 +270,26 @@ function WAR(){
 
 }
 
+function drawFifthCard() {
+    let computerFifthCard = [];
+    let playerFifthCard = [];
+    computerFifthCard = computerDeck.shift();
+    playerFifthCard = playerCard.shift();
 
+    computerForthCard.innerHTML = `<img src=${computerFifthCard.image} class = "cards" />`;
+    playerForthCard.innerHTML = `<img src=${playerFifthCard.image} class = "cards" />`;
+
+    let warWarResults = compareCards(computerFifthCard,playerFifthCard);
+    if (warWarResult === "Computer wins!") {
+        warMessage.textContent = "Computer wins the war!";
+        computerWonDeck.push(...computerWarCards, ...playerWarCards,computerFifthCard,playerFifthCard);
+        return "Computer wins!";
+    } else if (warWarResult === "You win!") {
+        warMessage.textContent = "You win the war!";
+        playerWonDeck.push(...playerWarCards, ...computerWarCards,computerFifthCard,playerFifthCard);
+        return "You win!";
+    }
+}
 
 
 function determineWinner() {
@@ -309,6 +314,13 @@ document.getElementById('continue-game-btn').addEventListener('click', function(
     warTitle.style.display = 'flex'
     warBattle.style.display = 'none'
     warFaceOff.style.display = 'none'
+    message.textContent = "Click next button to continue playing!" ;
+    if (computerDeck.length === 0|| playerDeck.length === 0) {
+        determineWinner() 
+        document.getElementById('next-card-btn').style.display = 'none';
+        newGame.style.display = 'block';
+       
+    }
 })
 
 
